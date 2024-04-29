@@ -173,6 +173,20 @@ app.delete("/varinhas/:id", async (req, res) => {
     }
 });
 
+app.get("/varinhas/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const result = await pool.query("SELECT * FROM varinhas WHERE id = $1", [id]); 
+        if (result.rowCount === 0) {
+            res.status(404).send({ mensagem: "Varinha não encontrada" });
+        } else {
+            res.json(result.rows);
+        }
+    } catch (error) {
+        console.error("Erro ao obter varinha por id:", error);
+        res.status(500).send("Erro ao obter varinha por id");
+    }
+});           
 const frasesHarryPotter = [
     "As coisas que perdemos têm um jeito de voltar para nós no final, se não forem perdidas para sempre.",
     "É as nossas escolhas que revelam o que realmente somos, muito mais do que as nossas habilidades.",
