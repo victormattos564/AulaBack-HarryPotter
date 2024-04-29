@@ -2,7 +2,7 @@
 
 Esta é uma API simples para gerenciar informações sobre bruxos e varinhas do universo de Harry Potter.
 
-<img src="/image/harry.jpg" height='300' >
+<img src="/image/harry.jpg" height='600' >
 ### Requisitos
 
 - Node.js
@@ -37,7 +37,7 @@ npm run dev
 ### Rotas Disponíveis
 
 #### Bruxos
-
+- **GET** `/bruxos/:id`: Procura Bruxos Pelo ID
 - **GET** `/bruxos`: Retorna todos os bruxos cadastrados.
 - **GET** `/bruxos/nome/:nome`: Retorna um bruxo específico pelo nome.
 - **GET** `/bruxos/sangue/:status_sangue`: Retorna bruxos filtrados por status sanguíneo.
@@ -46,7 +46,7 @@ npm run dev
 - **DELETE** `/bruxos/:id`: Exclui um bruxo pelo ID.
 
 #### Varinhas
-
+- **GET** `/varinhas/:id`: Procura Varinhas Pelo ID
 - **GET** `/varinhas`: Retorna todas as varinhas cadastradas.
 - **GET** `/varinhas/nucleo_varinha/:nucleo`: Retorna varinhas filtradas pelo núcleo.
 - **POST** `/varinhas`: Cadastra uma nova varinha.
