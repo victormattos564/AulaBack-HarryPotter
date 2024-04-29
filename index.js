@@ -173,8 +173,22 @@ app.delete("/varinhas/:id", async (req, res) => {
     }
 });
 
+const frasesHarryPotter = [
+    "As coisas que perdemos têm um jeito de voltar para nós no final, se não forem perdidas para sempre.",
+    "É as nossas escolhas que revelam o que realmente somos, muito mais do que as nossas habilidades.",
+    "Palavras estão, na minha não tão humilde opinião, nossa mais inexaurível fonte de magia. Elas são capazes tanto de infligir feridas quanto de curá-las.",
+    "A felicidade pode ser encontrada mesmo nas horas mais sombrias, se a pessoa se lembrar de acender a luz.",
+    "Não vale a pena viver sonhando e se esquecer de viver.",
+    "Para uma mente bem estruturada, a morte é apenas a próxima grande aventura.",
+    "O que temos de decidir é o que fazer com o tempo que nos é dado.",
+    "Não tenha pena dos mortos, tenha pena dos vivos e acima de tudo daqueles que vivem sem amor.",
+    "A felicidade pode ser encontrada mesmo nas horas mais negras, se a pessoa se lembrar de acender a luz.",
+    "Encontrar o que nos faz felizes, significa que podemos mudar nossas vidas."
+];
+
 app.get("/", async (req, res) => {
-    res.status(200).send({ mensagem: "Servidor backend rodando com sucesso🧙🏿‍♂️" });
+    const fraseAleatoria = frasesHarryPotter[Math.floor(Math.random() * frasesHarryPotter.length)];
+    res.status(200).send({ mensagem: fraseAleatoria });
 });
 
 app.listen(PORT, () => {
