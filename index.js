@@ -54,6 +54,20 @@ app.delete("/bruxos/:id", async (req, res) => {
     }
 });
 
+app.get("/varinhas/nucleo_varinha/:nucleo", async (req, res) => {
+    const { nucleo_varinha } = req.params;
+    try {
+        const result = await pool.query("SELECT * FROM varinhas WHERE nucleo_varinha = $1", [nucleo_varinha]);
+        res.json({
+            total: result.rowCount,
+            varinhas: result.rows,
+        });
+    } catch (error) {
+        console.error("Erro ao obter varinhas por tipo de núcleo:", error);
+        res.status(500).json("Erro ao obter varinhas por tipo de núcleo");
+    }
+});
+
 
 app.get("/bruxos/nome/:nome", async (req, res) => {
     try {
@@ -98,7 +112,7 @@ app.post("/varinhas", async (req, res) => {
             [material, comprimento_varinha, nucleo_varinha, data_fabricacao]
         );
         res.json({
-            message: "Varinha cadastrada com sucesso",
+            message: "Sua foi Varinha cadastrada com sucesso",
             varinha: rows[0],
         });
     } catch (error) {
@@ -110,8 +124,8 @@ app.post("/varinhas", async (req, res) => {
 app.get("/varinhas", async (req, res) => {
     const result = await pool.query("SELECT * FROM varinhas")
         .catch(error => {
-            console.error("Erro ao obter varinhas:", error);
-            res.status(500).json("Erro ao obter varinhas");
+            console.error("Erro ao obter suas varinhas:", error);
+            res.status(500).json("Erro ao obter  varinhas");
         });
     res.json({
         total: result.rowCount,
@@ -119,6 +133,19 @@ app.get("/varinhas", async (req, res) => {
     });
 });
 
+app.get("/bruxos/sangue/:status_sangue", async (req, res) => {
+    const { status_sangue } = req.params;
+    try {
+        const result = await pool.query("SELECT * FROM bruxos WHERE status_sangue = $1", [status_sangue]);
+        res.json({
+            total: result.rowCount,
+            bruxos: result.rows,
+        });
+    } catch (error) {
+        console.error("Erro ao obter bruxos por status sanguíneo:", error);
+        res.status(500).json("Erro ao obter bruxos por status sanguíneo");
+    }
+});
 
 app.put("/varinhas/:id", async (req, res) => {
     try {
@@ -128,10 +155,10 @@ app.put("/varinhas/:id", async (req, res) => {
             "UPDATE varinhas SET material = $1, comprimento_varinha = $2, nucleo_varinha = $3, data_fabricacao = $4 WHERE id = $5",
             [material, comprimento_varinha, nucleo_varinha, data_fabricacao, id]
         );
-        res.status(200).send({ mensagem: "Sua Varinha atualizada com sucesso" });
+        res.status(200).send({ mensagem: "Sua foi Varinha atualizada com sucesso" });
     } catch (error) {
-        console.error("Erro ao atualizar varinha:", error);
-        res.status(500).send("Erro ao atualizar varinha");
+        console.error("Erro ao atualizar sua varinha:", error);
+        res.status(500).send("Erro ao atualizar sua varinha");
     }
 });
 
