@@ -2,7 +2,7 @@
 
 Esta é uma API simples para gerenciar informações sobre bruxos e varinhas do universo de Harry Potter.
 
-<img src="/image/harry.jpg" height='600' >
+<img src="/image/harry.jpg" height='500' >
 ### Requisitos
 
 - Node.js
