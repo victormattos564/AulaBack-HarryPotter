@@ -54,8 +54,9 @@ app.delete("/bruxos/:id", async (req, res) => {
     }
 });
 
-app.get("/varinhas/nucleo_varinha/:nucleo", async (req, res) => {
+app.get("/varinhas/nucleo_varinha/:nucleo_varinha", async (req, res) => {
     const { nucleo_varinha } = req.params;
+    console.log(nucleo_varinha);
     try {
         const result = await pool.query("SELECT * FROM varinhas WHERE nucleo_varinha = $1", [nucleo_varinha]);
         res.json({
